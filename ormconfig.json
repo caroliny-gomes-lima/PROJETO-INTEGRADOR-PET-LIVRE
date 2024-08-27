@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "postgresdb",
+  "port": 5432,
+  "username": "postgres",
+  "password": "0@Ff8029",
+  "database": "petLivre-db",
+  "entities": ["src/domain/models/users/Client.model.ts"],
+  "synchronize": true
+}
