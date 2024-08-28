@@ -6,7 +6,8 @@ Este projeto é um sistema backend que oferece serviços de vacinação gratuita
 O projeto promove a saúde e o bem-estar dos animais de estimação de pessoas de baixa renda, garantindo que eles recebam vacinação e tratamento médico necessário, o que também impacta De forma positiva a saúde pública. Mesmo que o foco seja em pets, o conceito de garantir que todos tenham acesso a cuidados essenciais, está alinhado com a meta de promover o acesso universal a serviços de saúde. Ao focar em pessoas de baixa renda e fornecer-lhes acesso a serviços que seriam inacessíveis, o projeto contribui para a redução das desigualdades dentro da sociedade.
 
 ## Tema
-<strong>ODS</strong>
+<strong>ODS -> </strong>
+Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adotada durante a Cúpula das Nações Unidas sobre o Desenvolvimento Sustentável em setembro de 2015 composta por 17 objetivos e 169 metas a serem atingidos até 2030.
 <p align="center">
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgO1rfnxc-yCeCYfvC3fNfAUJRAQMs_HOv_g&s" alt="Imagem 1">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYRf4cBW7AZ1sT21E16IMw01LmKpNNsAnQig&s" alt="Imagem 2">
@@ -47,67 +48,47 @@ O projeto promove a saúde e o bem-estar dos animais de estimação de pessoas d
 
 ## Requisitos
 
-## Modelo Lógigo (diagrama de classes)
+## Modelo Lógico (diagrama de classes)
 
 <p align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgO1rfnxc-yCeCYfvC3fNfAUJRAQMs_HOv_g&s" alt="Imagem 1">
-
+<img src="assets/digramaClassePetLivre.drawio.png" alt="Imagem 1">
 </p>
 
-## Project setup
-
-```bash
-$ npm install
+## Arquitetura do Sistema
+Padrão de design de design (design pattern) arquitetura hexagonal, arquitetura de portas e adaptadores.
+```
+src/
+|-- domain/
+|   |-- models/
+|   |-- services/
+|   |-- dtos/
+|   |--test/
+|
+|-- app/
+|   |-- ports/
+|   |   |-- in/
+|   |   |-- out/
+|   |   |   |-- externalService/
+|   |   |--test/
+|
+|-- infrastructure/
+|   |-- adapters/
+|   |   |-- controllers/
+|   |   |-- database/
+|   |   |-- externalService/
+|   |-- test/
+|-- app.module.ts
+|-- main.ts
+|
+|--.eslintrc.js
+|--.gitignore
+|--.prettierrc
+|--docker-compose.yml
+|--Dockerfile
+|--nest-cli.json
+|--nodemon.json
+|--package.json
+|--tsconfig.json
 ```
 
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Tecnologias utilizadas
