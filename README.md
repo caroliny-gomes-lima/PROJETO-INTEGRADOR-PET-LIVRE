@@ -1,30 +1,58 @@
+## Introdução
+
+Este projeto é um sistema backend que oferece serviços de vacinação gratuita e medicamentos com desconto para pets, especialmente voltado para usuários de baixa renda. Eles podem criar contas, cadastrar seus pets e visualizar clínicas veterinárias próximas que oferecem esses serviços. O sistema permite ainda o agendamento de visitas domiciliares de veterinários para quem não pode levar o pet até a clínica. O cadastro inclui a descrição do pet e a comprovação de baixa renda do dono. ONGs e programas também podem se cadastrar para oferecer campanhas de vacinação e informações educacionais diretamente na plataforma.
+
+## Contexto
+O projeto promove a saúde e o bem-estar dos animais de estimação de pessoas de baixa renda, garantindo que eles recebam vacinação e tratamento médico necessário, o que também impacta De forma positiva a saúde pública. Mesmo que o foco seja em pets, o conceito de garantir que todos tenham acesso a cuidados essenciais, está alinhado com a meta de promover o acesso universal a serviços de saúde. Ao focar em pessoas de baixa renda e fornecer-lhes acesso a serviços que seriam inacessíveis, o projeto contribui para a redução das desigualdades dentro da sociedade.
+
+## Tema
+<strong>ODS</strong>
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgO1rfnxc-yCeCYfvC3fNfAUJRAQMs_HOv_g&s" alt="Imagem 1">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYRf4cBW7AZ1sT21E16IMw01LmKpNNsAnQig&s" alt="Imagem 2">
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Funcionalidades Principais
+<strong>CRUD</strong>
+* Create (Criar): Usuários podem criar contas, cadastrar seus pets(O cadastro inclui a descrição do pet e a comprovação de baixa renda). 
+* Update (Atualizar): Usuários podem atualizar as informações da conta editando dados do pet e da conta.
+* Delete (Excluir): Usuários podem deletar a conta.
+* Read (Ler): Usuários podem ver a lista de clínicas que oferecem vacinas.
+* Create (Criar): Clínicas veterinárias voluntárias e ONGs podem se cadastrar.
+* Update (Atualizar): Clínicas veterinárias voluntárias e ONGs podem editar dados.
+* Delete (Excluir): Clínicas veterinárias voluntárias e ONGs podem deletar suas contas.
+  
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+## Funcionalidades Secundarias
+<strong>CRUD</strong>
+* Create (Criar): ONGs podem cadastrar campanhas de vacinação com datas e local.
+* Create (Criar): ONGs podem cadastrar informações educacionais sobre cuidados com pets.
+* Delete (Excluir): ONGs podem deletar campanhas de vacinação após prazo terminar.
+* Delete (Excluir): ONGs podem deletar informações educacionais sobre cuidados com pets.
+* Update (Atualizar): ONGs podem editar e atualizar campanhas de vacinação após prazo terminar.
+* Update (Atualizar): ONGs podem editar e atualizar informações educacionais sobre cuidados com pets.
+* Read (Ler): Usuários podem ver campanhas de vacinação com datas e local.
+* Read (Ler): Usuários podem ver informações educacionais sobre cuidados com pets.
+* Create (Criar): Clínicas veterinárias podem cadastrar vacinas em estoque.
+* Create (Criar): Clínicas veterinárias podem cadastrar remedios com desconto e em estoque para compras.
+* Update (Atualizar): Clínicas veterinárias podem atualizar editando dados das vacinas oferecidas.
+* Update (Atualizar): Clínicas veterinárias podem atualizar editando dados dos medicamentos para compras.
+* Read (Ler): Usuários podem ver a lista de vacinas oferecidas pela clínica.
+* Read (Ler): Usuários podem ver a lista de remedios para compras oferecidos pelas clínica.
+* Create (Criar): Usuários podem agendar visita domiciliar para vacinação do pet pela clínica.
+* Read (Ler): Clínicas podem ver lista de agendamentos domiciliares dos usuários.
+* Update (Atualizar): Clínicas podem atualizar agendamentos domiciliares dos usuários.
+* Delete (Excluir): Clínicas podem cancelar agendamentos domiciliares dos usuários.
+* Delete (Excluir): Usuários podem cancelar visita domiciliar para vacinação do pet pela clínica.
+
+## Requisitos
+
+## Modelo Lógigo (diagrama de classes)
+
+<p align="center">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgO1rfnxc-yCeCYfvC3fNfAUJRAQMs_HOv_g&s" alt="Imagem 1">
+
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Project setup
 
