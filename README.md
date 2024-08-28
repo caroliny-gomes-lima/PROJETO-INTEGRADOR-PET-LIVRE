@@ -18,6 +18,7 @@ Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adota
 * Create (Criar): Usuários podem criar contas, cadastrar seus pets(O cadastro inclui a descrição do pet e a comprovação de baixa renda). 
 * Update (Atualizar): Usuários podem atualizar as informações da conta editando dados do pet e da conta.
 * Delete (Excluir): Usuários podem deletar a conta.
+* Read (Ler): Clínicas veterinárias voluntárias podem ver listas de usuários. 
 * Read (Ler): Usuários podem ver a lista de clínicas que oferecem vacinas.
 * Create (Criar): Clínicas veterinárias voluntárias e ONGs podem se cadastrar.
 * Update (Atualizar): Clínicas veterinárias voluntárias e ONGs podem editar dados.
