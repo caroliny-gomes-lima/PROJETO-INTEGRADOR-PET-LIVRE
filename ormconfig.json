@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "0@Ff8029",
-  "database": "petLivre-db",
-  "entities": ["src/domain/models/users/Client.model.ts"],
+  "database": "petLivre-database",
+  "entities": ["src/domain/models/users/*.ts", "src/domain/models/pets/*.ts"],
   "synchronize": true
 }

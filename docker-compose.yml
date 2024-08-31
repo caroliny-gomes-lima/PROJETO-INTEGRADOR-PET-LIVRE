@@ -2,7 +2,7 @@ version: '3.10'
 services:
   api:
     build: .
-    container_name: petLivre-api
+    container_name: petLivre-system-api
     command: npm run start:dev
     depends_on:
       - postgresdb
@@ -13,7 +13,7 @@ services:
 
   postgresdb:
     image: postgres:latest
-    container_name: petLivre-database
+    container_name: ${DATABASE_NAME}
     env_file: ./.env
     environment:
       POSTGRES_USER: ${DATABASE_USER}

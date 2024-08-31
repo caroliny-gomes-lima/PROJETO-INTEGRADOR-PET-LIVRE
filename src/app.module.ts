@@ -5,6 +5,9 @@ import { ApplicationModule } from './app/aplication.module';
 import { DomainModule } from './domain/domain.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import * as dotenv from 'dotenv';
+import { CatPet } from './domain/models/pets/CatPet.model';
+import { DogPet } from './domain/models/pets/DogPet.model';
+import { Address } from './domain/models/users/Address.Model';
 
 dotenv.config();
 
@@ -19,7 +22,7 @@ dotenv.config();
       password: process.env.DATABASE_PASS, //senha do banco de dados
       retryAttempts: 10,
       retryDelay: 3000,
-      entities: [ClientUser],
+      entities: [ClientUser, CatPet, DogPet, Address],
       synchronize: true,
     }),
     ApplicationModule,

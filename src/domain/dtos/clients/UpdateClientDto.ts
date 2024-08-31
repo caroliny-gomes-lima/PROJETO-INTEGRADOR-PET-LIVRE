@@ -3,4 +3,5 @@ export interface UpdateClientDto {
   email: string;
   password: string;
   cpf: string;
+  zipCode?: string;
 }

@@ -1,12 +1,12 @@
 import { CreateClientDto } from 'src/domain/dtos/clients/CreateClient.dto';
 import { UpdateClientDto } from 'src/domain/dtos/clients/UpdateClientDto';
 import { ClientService } from 'src/domain/services/Clients.service';
+import { CLIENT_HTTP_MESSAGE_STATUS } from 'src/domain/exceptions/ResponseStatusMessage';
 import {
   Body,
   Controller,
   Delete,
   Get,
-  HttpException,
   HttpStatus,
   Param,
   Post,
@@ -19,99 +19,32 @@ export class ClientController {
 
   @Get('findClient/:id')
   async findClient(@Param('id') id: string) {
-    try {
-      const clienteData = await this.clientService.findById(id);
-
-      return {
-        statusCode: HttpStatus.FOUND,
-        message: 'Cliente encontrado com sucesso',
-        data: clienteData,
-      };
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.NOT_FOUND,
-            message: 'Erro ao enontrar cliente cliente',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      } else {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.NOT_FOUND,
-            message: 'Erro ao enontrar cliente cliente',
-            error: 'Unknown error',
-          },
-          HttpStatus.NOT_FOUND,
-        );
-      }
-    }
+    const clienteData = await this.clientService.findById(id);
+    return {
+      statusCode: HttpStatus.FOUND,
+      message: CLIENT_HTTP_MESSAGE_STATUS[0],
+      data: clienteData,
+    };
   }
 
   @Get('allClients')
   async findAllClients() {
-    try {
-      const allClients = await this.clientService.findAll();
-
-      return {
-        statusCode: HttpStatus.FOUND,
-        message: 'Todos os clientes encontrados com sucesso',
-        data: allClients,
-      };
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.NOT_FOUND,
-            message: 'Erro ao enontrar clientes',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      } else {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.NOT_FOUND,
-            message: 'Erro ao enontrar clientes',
-            error: 'Unknown error',
-          },
-          HttpStatus.NOT_FOUND,
-        );
-      }
-    }
+    const allClients = await this.clientService.findAll();
+    return {
+      statusCode: HttpStatus.FOUND,
+      message: CLIENT_HTTP_MESSAGE_STATUS[1],
+      data: allClients,
+    };
   }
 
   @Post('registerClient')
   async create(@Body() createClientDto: CreateClientDto) {
-    try {
-      const clientData = await this.clientService.create(createClientDto);
-
-      return {
-        satusCode: HttpStatus.CREATED,
-        message: 'Cliente criado com sucesso',
-        data: clientData,
-      };
-    } catch (error: unknown) {
-      console.error(error);
-      if (error instanceof Error) {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.BAD_REQUEST,
-            message: 'Erro ao criar cliente',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      } else {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.BAD_REQUEST,
-            message: 'Erro ao criar cliente',
-            error: 'Unknown error',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-    }
+    const clientData = await this.clientService.create(createClientDto);
+    return {
+      satusCode: HttpStatus.CREATED,
+      message: CLIENT_HTTP_MESSAGE_STATUS[2],
+      data: clientData,
+    };
   }
 
   @Put('updateClient/:id')
@@ -119,67 +52,21 @@ export class ClientController {
     @Param('id') id: string,
     @Body() updateUserDto: UpdateClientDto,
   ) {
-    try {
-      const clientData = await this.clientService.update(id, updateUserDto);
-
-      return {
-        satusCode: HttpStatus.CREATED,
-        message: 'Cliente criado com sucesso',
-        data: clientData,
-      };
-    } catch (error: unknown) {
-      console.error(error);
-      if (error instanceof Error) {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.BAD_REQUEST,
-            message: 'Erro ao atualizar cliente',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      } else {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.BAD_REQUEST,
-            message: 'Erro ao atualizar cliente',
-            error: 'Unknown error',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-    }
+    const clientData = await this.clientService.update(id, updateUserDto);
+    return {
+      satusCode: HttpStatus.CREATED,
+      message: CLIENT_HTTP_MESSAGE_STATUS[3],
+      data: clientData,
+    };
   }
 
   @Delete('deleteClient/:id')
   async deleteUser(@Param('id') id: string) {
-    try {
-      const clientData = await this.clientService.delete(id);
-
-      return {
-        satusCode: HttpStatus.OK,
-        message: 'Cliente deletado com sucesso',
-        data: clientData,
-      };
-    } catch (error: unknown) {
-      console.error(error);
-      if (error instanceof Error) {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.BAD_REQUEST,
-            message: 'Erro ao deletar cliente',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      } else {
-        throw new HttpException(
-          {
-            statusCode: HttpStatus.BAD_REQUEST,
-            message: 'Erro ao deletar cliente',
-            error: 'Unknown error',
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-    }
+    const clientData = await this.clientService.delete(id);
+    return {
+      satusCode: HttpStatus.OK,
+      message: CLIENT_HTTP_MESSAGE_STATUS[4],
+      data: clientData,
+    };
   }
 }

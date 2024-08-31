@@ -1,19 +1,13 @@
-/*Validações dados do cliente: 
-criação do validator para validar os dados do cliente
-antes de criar um novo cliente.
-Os métodos de validação garantem que os dados estão corretos 
-e que não há duplicações.*/
-
 import { ClientUser } from 'src/domain/models/users/Client.model';
 
 export class UserValidator {
-  public static ERROR_ID_INVALID = 'Invalid id';
-  public static ERROR_EMAIL_INVALID = 'Invalid email';
-  public static ERROR_PASSWORD_INVALID = 'Invalid password';
-  public static ERROR_EMAIL_ALREADY_IN_USE = 'E-mail already in use';
-  public static ERROR_CPF_ALREADY_IN_USE = 'E-mail already in use';
-  public static ERROR_CPF_INVALID = 'Invalid CPF';
-  public static ERROR_FULLNAME_INVALID = 'Invalid fullName';
+  public static ERROR_ID_INVALID = 'Id Inválido';
+  public static ERROR_EMAIL_INVALID = 'E-mail inválido';
+  public static ERROR_PASSWORD_INVALID = 'Senha inválida';
+  public static ERROR_EMAIL_ALREADY_IN_USE = 'Este e-mail já está em uso';
+  public static ERROR_CPF_ALREADY_IN_USE = 'Este CPF já está em uso';
+  public static ERROR_CPF_INVALID = 'CPF Inválido';
+  public static ERROR_FULLNAME_INVALID = 'Nome completo inválido';
 
   public static ACCEPTED_FULLNAME_LENGHT = 2;
 
