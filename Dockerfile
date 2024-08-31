@@ -3,7 +3,7 @@ FROM node:18
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-COPY .env /.env
+COPY .env /usr/src/app/.env
 RUN npm install
 
 COPY . .
