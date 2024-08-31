@@ -15,11 +15,7 @@ dotenv.config();
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.PGHOST,
-      port: parseInt(process.env.PGPORT),
-      database: process.env.PGDATABASE, //banco de dados nome
-      username: process.env.PGUSER, //usuario do postgres
-      password: process.env.PGPASSWORD, //senha do banco de dados
+      url: process.env.DATABASE_URL,
       retryAttempts: 10,
       retryDelay: 3000,
       entities: [ClientUser, CatPet, DogPet, Address],
