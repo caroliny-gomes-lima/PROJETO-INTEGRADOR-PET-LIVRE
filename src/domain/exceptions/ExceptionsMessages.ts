@@ -32,7 +32,7 @@ export class ClientNotFoundException extends HttpException {
 
 export class PetTypeNotSupported extends HttpException {
   constructor() {
-    super('Tipo de pet não suportado', HttpStatus.ACCEPTED);
+    super('Tipo de pet não suportado', HttpStatus.NOT_ACCEPTABLE);
   }
 }
 

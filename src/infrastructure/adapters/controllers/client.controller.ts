@@ -2,6 +2,7 @@ import { CreateClientDto } from 'src/domain/dtos/clients/CreateClient.dto';
 import { UpdateClientDto } from 'src/domain/dtos/clients/UpdateClientDto';
 import { ClientService } from 'src/domain/services/Clients.service';
 import { CLIENT_HTTP_MESSAGE_STATUS } from 'src/domain/exceptions/ResponseStatusMessage';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -13,10 +14,17 @@ import {
   Put,
 } from '@nestjs/common';
 
+@ApiTags('clients')
 @Controller('clients')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
+  @ApiOperation({ summary: 'Retorna cliente pelo id(UUID)' })
+  @ApiResponse({
+    status: 302,
+    description: CLIENT_HTTP_MESSAGE_STATUS[0],
+  })
+  @ApiResponse({ status: 404, description: 'Cliente não encontrados.' })
   @Get('findClient/:id')
   async findClient(@Param('id') id: string) {
     const clienteData = await this.clientService.findById(id);
@@ -27,6 +35,12 @@ export class ClientController {
     };
   }
 
+  @ApiOperation({ summary: 'Retorna todos os clientes' })
+  @ApiResponse({
+    status: 302,
+    description: CLIENT_HTTP_MESSAGE_STATUS[1],
+  })
+  @ApiResponse({ status: 404, description: 'Clientes não encontrados.' })
   @Get('allClients')
   async findAllClients() {
     const allClients = await this.clientService.findAll();
@@ -37,6 +51,15 @@ export class ClientController {
     };
   }
 
+  @ApiOperation({ summary: 'Cria cadastro do cliente' })
+  @ApiResponse({
+    status: 201,
+    description: CLIENT_HTTP_MESSAGE_STATUS[2],
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Não foi possível cadastrar cliente.',
+  })
   @Post('registerClient')
   async create(@Body() createClientDto: CreateClientDto) {
     const clientData = await this.clientService.create(createClientDto);
@@ -47,6 +70,15 @@ export class ClientController {
     };
   }
 
+  @ApiOperation({ summary: 'Atualiza cadastro do cliente pelo id(UUID)' })
+  @ApiResponse({
+    status: 200,
+    description: CLIENT_HTTP_MESSAGE_STATUS[3],
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Não foi possível atualizar cadastro do cliente',
+  })
   @Put('updateClient/:id')
   async updateUser(
     @Param('id') id: string,
@@ -60,6 +92,15 @@ export class ClientController {
     };
   }
 
+  @ApiOperation({ summary: 'Deleta cadastro do cliente pelo id(UUID)' })
+  @ApiResponse({
+    status: 200,
+    description: CLIENT_HTTP_MESSAGE_STATUS[4],
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Não foi possível deletar cadastro do cliente',
+  })
   @Delete('deleteClient/:id')
   async deleteUser(@Param('id') id: string) {
     const clientData = await this.clientService.delete(id);

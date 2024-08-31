@@ -2,8 +2,10 @@ import { Column, PrimaryGeneratedColumn } from 'typeorm';
 export abstract class User {
   @PrimaryGeneratedColumn('uuid')
   private id: string;
+
   @Column()
   private fullName: string;
+
   @Column({ unique: true })
   private email: string;
 

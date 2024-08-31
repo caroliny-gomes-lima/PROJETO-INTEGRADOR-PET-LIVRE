@@ -36,6 +36,7 @@ export class ClientUser extends User {
     this.password = password;
     this.cpf = cpf;
   }
+
   public getCpf(): string {
     return this.cpf;
   }
@@ -50,12 +51,10 @@ export class ClientUser extends User {
     fullName: string,
     email: string,
     password: string,
-    cpf: string,
     address: Address,
   ): void {
     super.updateUserDetails(fullName, email); // Chama o método da classe mãe
     this.password = password;
-    this.cpf = cpf;
     this.address = address;
   }
 }
