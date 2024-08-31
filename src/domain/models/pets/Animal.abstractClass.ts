@@ -4,16 +4,22 @@ import { AnimalTypeEnum } from '../enums/AnimalTypeEnum';
 export abstract class Animal {
   @PrimaryGeneratedColumn('uuid')
   private id: string;
+
   @Column()
   private name: string;
+
   @Column()
   private race: string;
+
   @Column()
   private color: string;
+
   @Column()
   private age: number;
+
   @Column()
   private typePet: AnimalTypeEnum;
+
   constructor(
     id: string,
     name: string,

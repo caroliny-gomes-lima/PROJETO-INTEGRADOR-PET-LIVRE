@@ -100,7 +100,6 @@ export class ClientService implements ClientInterfaceUseCases {
     UserValidator.verifyEmail(updateClientDto.email);
     UserValidator.verifyPassword(updateClientDto.password);
     UserValidator.isValidFullName(updateClientDto.fullName);
-    UserValidator.verifyCpf(updateClientDto.cpf);
 
     let address: Address = null;
     if (updateClientDto.zipCode) {
@@ -117,7 +116,6 @@ export class ClientService implements ClientInterfaceUseCases {
         updateClientDto.fullName,
         updateClientDto.email,
         updateClientDto.password,
-        updateClientDto.cpf,
         address,
       );
 
