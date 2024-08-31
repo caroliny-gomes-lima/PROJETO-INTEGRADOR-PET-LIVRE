@@ -53,6 +53,12 @@ export class ClientService implements ClientInterfaceUseCases {
   async create(createClientDto: CreateClientDto): Promise<ClientUser> {
     let address: Address = null;
 
+    UserValidator.verifyEmail(createClientDto.email);
+    UserValidator.verifyPassword(createClientDto.password);
+    UserValidator.isValidId(createClientDto.id);
+    UserValidator.isValidFullName(createClientDto.fullName);
+    UserValidator.verifyCpf(createClientDto.cpf);
+
     // Obtém o endereço se o zipCode for fornecido
     if (createClientDto.zipCode) {
       address = await CepService.getAddress(createClientDto.zipCode);

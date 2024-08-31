@@ -23,7 +23,7 @@ describe('email validator', () => {
       ),
     ];
     expect(() => UserValidator.checkEmailAlreadyInUse(users, email)).toThrow(
-      'Este CPF já está em uso',
+      'Este e-mail já está em uso',
     );
   });
 
