@@ -1,11 +1,21 @@
 import { ClientUser } from 'src/domain/models/users/Client.model';
 import { CreateClientDto } from 'src/domain/dtos/clients/CreateClient.dto';
-import { UserValidator } from 'src/domain/services/validators/UserValidator';
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 
+import { Inject, Injectable } from '@nestjs/common';
 import { ClientInterface } from 'src/app/ports/out/Client.repository';
 import { ClientInterfaceUseCases } from 'src/app/ports/in/Client.usecase';
 import { UpdateClientDto } from '../dtos/clients/UpdateClientDto';
+
+import { Address } from '../models/users/Address.Model';
+import { ClientFactory } from '../factories/ClientFactory';
+import { UserValidator } from './validators/UserValidator';
+import { CepService } from './../../infrastructure/adapters/externalService/cepAddress/cep.service';
+import {
+  ClientAlreadyExistsException,
+  ClientNotFoundException,
+  CpfAlreadyInUseException,
+  EmailAlreadyInUseException,
+} from '../exceptions/ExceptionsMessages';
 
 @Injectable()
 export class ClientService implements ClientInterfaceUseCases {
@@ -14,69 +24,65 @@ export class ClientService implements ClientInterfaceUseCases {
     @Inject('ClientInterface')
     private readonly clientRepository: ClientInterface,
   ) {}
-  async create(createClientDto: CreateClientDto): Promise<ClientUser | null> {
-    // Validações
-    UserValidator.verifyEmail(createClientDto.email);
-    UserValidator.verifyPassword(createClientDto.password);
-    UserValidator.isValidId(createClientDto.id);
-    UserValidator.isValidFullName(createClientDto.fullName);
-    UserValidator.verifyCpf(createClientDto.cpf);
 
-    //Verifia se tem algum cliente no banco de dados com o mesmo id cadastrado
-    //Se tiver irá lançar um erro.
+  private async checkExistingClient(
+    createClientDto: CreateClientDto,
+  ): Promise<void> {
     const existingClientById = await this.clientRepository.findById(
       createClientDto.id,
     );
     if (existingClientById) {
-      throw new Error('Client with this ID already exists');
+      throw new ClientAlreadyExistsException();
     }
 
-    //Verifia se tem algum cliente no banco de dados com o mesmo email cadastrado
-    //Se tiver irá lançar um erro.
     const existingClientByEmail = await this.clientRepository.findByEmail(
       createClientDto.email,
     );
     if (existingClientByEmail) {
-      throw new Error('email already in use');
+      throw new EmailAlreadyInUseException();
     }
 
-    //Verifia se tem algum cliente no banco de dados com o mesmo email cadastrado
-    //Se tiver irá lançar um erro.
     const existingClientByCpf = await this.clientRepository.findByCpf(
       createClientDto.cpf,
     );
     if (existingClientByCpf) {
-      throw new Error('cpf already in use');
+      throw new CpfAlreadyInUseException();
     }
+  }
 
-    // Cria um novo cliente
-    const newClient = new ClientUser(
-      createClientDto.id,
-      createClientDto.fullName,
-      createClientDto.email,
-      createClientDto.password,
-      createClientDto.cpf,
-    );
+  async create(createClientDto: CreateClientDto): Promise<ClientUser> {
+    let address: Address = null;
+
+    // Obtém o endereço se o zipCode for fornecido
+    if (createClientDto.zipCode) {
+      address = await CepService.getAddress(createClientDto.zipCode);
+    }
+    // Verifica se o cliente já existe
+    await this.checkExistingClient(createClientDto);
+
+    // Use o Factory para criar o ClientUser
+    const newClient = ClientFactory.createClient(createClientDto);
+    newClient.address = address;
     this.clients = [...this.clients, newClient];
     return await this.clientRepository.save(newClient);
   }
 
   async findById(id: string): Promise<ClientUser | null> {
-    const getClient = this.clientRepository.findById(id);
-    console.log('getClient !!!!!!!!!!!!', getClient);
-    return await getClient;
+    const getClient = await this.clientRepository.findById(id);
+    if (!getClient) {
+      throw new ClientNotFoundException();
+    }
+    return getClient;
   }
 
   async findAll(): Promise<ClientUser[]> {
-    const getAllClients = await this.clientRepository.findAll();
-    return getAllClients;
+    return await this.clientRepository.findAll();
   }
 
   async delete(id: string): Promise<boolean> {
     const client = await this.clientRepository.delete(id);
-    console.log('client!!!!!!!!!!', client);
     if (!client) {
-      throw new HttpException('Cliente não encontrado', HttpStatus.NOT_FOUND);
+      throw new ClientNotFoundException();
     }
     return client;
   }
@@ -90,67 +96,26 @@ export class ClientService implements ClientInterfaceUseCases {
     UserValidator.isValidFullName(updateClientDto.fullName);
     UserValidator.verifyCpf(updateClientDto.cpf);
 
+    let address: Address = null;
+    if (updateClientDto.zipCode) {
+      address = await CepService.getAddress(updateClientDto.zipCode);
+    }
+
     const client = await this.findById(id);
-    console.log('client!!!!!!!!!!', client);
+    if (!client) {
+      throw new ClientNotFoundException();
+    }
+
     if (client) {
       client.updateDetails(
         updateClientDto.fullName,
         updateClientDto.email,
         updateClientDto.password,
         updateClientDto.cpf,
+        address,
       );
+
       return await this.clientRepository.save(client);
     }
-    return null;
   }
-
-  //   async getClientById(id: string): Promise<ClientUser> {
-  //     const client = await this.clientRepository.findById(id);
-  //     //console.log('client data #########', client);
-  //     if (!client) {
-  //       throw new HttpException('Cliente não encontrado', HttpStatus.NOT_FOUND);
-  //     }
-  //     return client;
-  //   }
-
-  //   async getAllClients(): Promise<ClientUser[]> {
-  //     //console.log('client data #########', client);
-  //     // if (!client) {
-  //     //   throw new HttpException('Cliente não encontrado', HttpStatus.NOT_FOUND);
-  //     // }
-  //     return await this.clientRepository.findAll();
-  //   }
-
-  //   async updateClient(
-  //     id: string,
-  //     updateClientDto: UpdateClientDto,
-  //   ): Promise<ClientUser | null> {
-  //     // Validações
-  //     UserValidator.verifyEmail(updateClientDto.email);
-  //     UserValidator.verifyPassword(updateClientDto.password);
-  //     UserValidator.isValidFullName(updateClientDto.fullName);
-  //     UserValidator.verifyCpf(updateClientDto.cpf);
-
-  //     const client = await this.getClientById(id);
-  //     console.log('client!!!!!!!!!!', client);
-  //     if (client) {
-  //       client.updateDetails(
-  //         updateClientDto.fullName,
-  //         updateClientDto.email,
-  //         updateClientDto.password,
-  //         updateClientDto.cpf,
-  //       );
-  //       return await this.clientRepository.save(client);
-  //     }
-  //     return null;
-  //   }
-
-  //   async deleteClient(id: string): Promise<boolean> {
-  //     const client = await this.clientRepository.delete(id);
-  //     console.log('client!!!!!!!!!!', client);
-  //     if (!client) {
-  //       throw new HttpException('Cliente não encontrado', HttpStatus.NOT_FOUND);
-  //     }
-  //     return client;
-  //   }
 }

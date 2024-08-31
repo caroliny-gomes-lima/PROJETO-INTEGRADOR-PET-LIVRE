@@ -1,6 +1,8 @@
-/*criação da classe cliente no dominio*/
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { User } from './Users.abstractClass';
+import { CatPet } from '../pets/CatPet.model';
+import { DogPet } from '../pets/DogPet.model';
+import { Address } from './Address.Model';
 
 @Entity('clients')
 export class ClientUser extends User {
@@ -9,6 +11,19 @@ export class ClientUser extends User {
 
   @Column({ unique: true })
   private cpf: string;
+
+  @OneToMany(() => CatPet, (catPet) => catPet.owner)
+  catsPet: CatPet[];
+
+  @OneToMany(() => DogPet, (dogPet) => dogPet.owner)
+  dogPet: DogPet[];
+
+  @OneToOne(() => Address, {
+    nullable: true,
+    cascade: true,
+  })
+  @JoinColumn({ name: 'address_id' })
+  address: Address;
 
   constructor(
     id: string,
@@ -36,12 +51,11 @@ export class ClientUser extends User {
     email: string,
     password: string,
     cpf: string,
+    address: Address,
   ): void {
     super.updateUserDetails(fullName, email); // Chama o método da classe mãe
     this.password = password;
     this.cpf = cpf;
+    this.address = address;
   }
 }
-/*métodos para acessar os dados nome e id (getId() e getFullName()). 
-Isso é típico das entidades de domínio, que encapsulam estado e 
-comportamentos relevantes para o negócio.*/
