@@ -40,7 +40,7 @@ export class PetService implements PetInterfaceUseCases {
     }
 
     // 2. Criar o pet usando a factory
-    const newPet = PetFactory.createPet(createPetDto, typePet);
+    const newPet = PetFactory.createPet(createPetDto, typePet, client);
     // 3. Associar o cliente ao pet
     newPet.owner = client;
 

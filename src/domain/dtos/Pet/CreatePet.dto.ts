@@ -1,4 +1,5 @@
 import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
+import { ClientUser } from 'src/domain/models/users/Client.model';
 
 export interface CreatePetDto {
   id: string;
@@ -7,4 +8,5 @@ export interface CreatePetDto {
   color: string;
   age: number;
   typePet: AnimalTypeEnum;
+  owner: ClientUser;
 }

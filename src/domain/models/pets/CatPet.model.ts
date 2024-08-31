@@ -14,7 +14,9 @@ export class CatPet extends Animal {
     race: string,
     color: string,
     age: number,
+    owner: ClientUser,
   ) {
     super(id, name, race, color, age, AnimalTypeEnum.PET_CAT);
+    this.owner = owner;
   }
 }
