@@ -98,3 +98,6 @@ src/
 * <strong>Docker</strong>
 * <strong>PostgresSQL</strong>
 * <strong>Insomnia</strong>
+* <strong>Typeorm</strong>
+* <strong>Swagger</strong>
+* <strong>Railway</strong>
