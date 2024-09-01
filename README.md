@@ -47,8 +47,6 @@ Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adota
 * Delete (Excluir): Clínicas podem cancelar agendamentos domiciliares dos usuários.
 * Delete (Excluir): Usuários podem cancelar visita domiciliar para vacinação do pet pela clínica.
 
-## Requisitos
-
 ## Modelo Lógico (diagrama de classes)
 
 <p align="center">
@@ -93,3 +91,10 @@ src/
 ```
 
 ## Tecnologias utilizadas
+
+* <strong>Typescript</strong>
+* <strong>Node</strong>
+* <strong>Framework Nestjs</strong>
+* <strong>Docker</strong>
+* <strong>PostgresSQL</strong>
+* <strong>Insomnia</strong>
