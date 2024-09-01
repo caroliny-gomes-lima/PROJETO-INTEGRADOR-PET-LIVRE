@@ -93,7 +93,7 @@ src/
 ## Tecnologias utilizadas
 
 * <strong>Typescript</strong>
-* <strong>Node</strong>
+* <strong>Nodejs</strong>
 * <strong>Framework Nestjs</strong>
 * <strong>Docker</strong>
 * <strong>PostgresSQL</strong>
