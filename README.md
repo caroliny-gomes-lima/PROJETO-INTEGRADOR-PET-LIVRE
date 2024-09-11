@@ -49,9 +49,9 @@ Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adota
 
 ## Modelo Lógico (diagrama de classes)
 
-<p align="center">
+<div align="center">
 <img src="assets/digramaClassePetLivre.drawio.png" alt="Imagem 1">
-</p>
+</div>
 
 ## Arquitetura do Sistema
 Padrão de design de design (design pattern) arquitetura hexagonal, arquitetura de portas e adaptadores.
