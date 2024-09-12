@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Status do projeto</h1>
+<h1>Status Do Projeto</h1>
 </div>
 <div align="center"><strong>Em desenvolvimento</strong></div><br/>
 <div align="center">
