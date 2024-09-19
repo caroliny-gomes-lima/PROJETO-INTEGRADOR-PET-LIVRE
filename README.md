@@ -61,7 +61,7 @@ Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adota
 ## Modelo Lógico (diagrama de classes)
 
 <div align="center">
-<img src="assets/Diagram-UML-Pet-livre.drawio.png" alt="Imagem 1">
+<img src="assets/Diagram-UML-Pet-livre.drawio.png" alt="Imagem diagrama">
 </div>
 
 ## Arquitetura do Sistema
