@@ -46,7 +46,7 @@ export class ClientUser extends User {
   }
 
   //override
-  //Método para atualizar os dados dos usuários
+  //Método para atualizar os dados dos usuários(mudar nome da função para editPersonInfo)
   public updateDetails(
     fullName: string,
     email: string,
