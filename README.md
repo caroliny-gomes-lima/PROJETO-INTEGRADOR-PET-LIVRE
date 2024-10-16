@@ -57,6 +57,14 @@ Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adota
 * Delete (Excluir): Clínicas podem cancelar agendamentos domiciliares dos usuários.
 * Delete (Excluir): Usuários podem cancelar visita domiciliar para vacinação do pet pela clínica.
 
+## Testes dos endpoints da API 
+<div style="display: inline_block">
+<div align="center">
+   <a href="https://petlivre-production.up.railway.app/api#/">
+      <img src="https://img.shields.io/badge/clique%20aqui-39ff00?style=for-the-badge&logo=xd&logoColor=white&labelColor=black">
+   </a>
+</div>
+
 ## Modelo Lógico (diagrama de classes)
 
 <div align="center">
