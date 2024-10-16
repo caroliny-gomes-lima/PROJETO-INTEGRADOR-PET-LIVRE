@@ -19,8 +19,8 @@ O projeto promove a saúde e o bem-estar dos animais de estimação de pessoas d
 <strong>ODS -> </strong>
 Os Objetivos de Desenvolvimento Sustentável (ODS) são uma agenda mundial adotada durante a Cúpula das Nações Unidas sobre o Desenvolvimento Sustentável em setembro de 2015 composta por 17 objetivos e 169 metas a serem atingidos até 2030.
 <p align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgO1rfnxc-yCeCYfvC3fNfAUJRAQMs_HOv_g&s" alt="Imagem 1">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYRf4cBW7AZ1sT21E16IMw01LmKpNNsAnQig&s" alt="Imagem 2">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgO1rfnxc-yCeCYfvC3fNfAUJRAQMs_HOv_g&s" alt="ods 3" width="200">
+  <img src="https://www.gov.br/ibama/pt-br/centrais-de-conteudo/arquivos/imagens/ods-10-png/@@images/image.png" alt="ods 10" width="200">
 </p>
 
 ## Funcionalidades Principais
