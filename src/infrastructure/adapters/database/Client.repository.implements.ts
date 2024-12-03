@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { ClientInterface } from 'src/app/ports/out/Client.repository';
-import { ClientUser } from 'src/domain/models/users/Client.model';
 import { Repository } from 'typeorm';
+import { ClientInterface } from '../../../app/ports/out/Client.repository';
+import { ClientUser } from '../../../domain/models/users/Client.model';
 
 export class ClienteRpositoryImpl implements ClientInterface {
   constructor(
@@ -27,7 +27,11 @@ export class ClienteRpositoryImpl implements ClientInterface {
 
   async delete(id: string): Promise<boolean> {
     const deleteClient = await this.clientRepository.delete(id);
-    return deleteClient.affected > 0;
+    return (
+      deleteClient.affected !== null &&
+      deleteClient.affected !== undefined &&
+      deleteClient.affected > 0
+    );
   }
 
   findByEmail(email: string): Promise<ClientUser | null> {

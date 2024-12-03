@@ -6,17 +6,17 @@ import { ClientUser } from '../users/Client.model';
 @Entity('catsPet')
 export class CatPet extends Animal {
   @ManyToOne(() => ClientUser, (clientUser) => clientUser.catsPet)
-  owner: ClientUser;
+  owner?: ClientUser;
 
   constructor(
     id: string,
     name: string,
     race: string,
-    color: string,
-    age: number,
-    owner: ClientUser,
+    color?: string,
+    age?: number,
+    owner?: ClientUser,
   ) {
-    super(id, name, race, color, age, AnimalTypeEnum.PET_CAT);
+    super(id, name, race, AnimalTypeEnum.PET_CAT, color, age);
     this.owner = owner;
   }
 }

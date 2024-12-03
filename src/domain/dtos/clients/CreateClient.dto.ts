@@ -6,28 +6,28 @@ export class CreateClientDto {
     description: 'UUID do cliente',
     format: 'uuid',
   })
-  id: string;
+  id!: string;
 
   @ApiProperty({ example: 'John Doe', description: 'nome completo do cliente' })
-  fullName: string;
+  fullName!: string;
 
   @ApiProperty({
     example: 'john.doe@someone.com',
     description: 'email do cliente',
   })
-  email: string;
+  email!: string;
 
   @ApiProperty({
     example: '@John123',
     description: 'Senha do cliente com no máximo 8 caracteres',
   })
-  password: string;
+  password!: string;
 
   @ApiProperty({
     example: '704.356.914-14',
     description: 'CPF do cliente',
   })
-  cpf: string;
+  cpf!: string;
 
   @ApiProperty({
     example: '76906-641',

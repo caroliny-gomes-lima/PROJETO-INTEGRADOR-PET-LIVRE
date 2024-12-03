@@ -1,8 +1,8 @@
-import { CreateClientDto } from 'src/domain/dtos/clients/CreateClient.dto';
-import { UpdateClientDto } from 'src/domain/dtos/clients/UpdateClientDto';
-import { ClientService } from 'src/domain/services/Clients.service';
-import { CLIENT_HTTP_MESSAGE_STATUS } from 'src/domain/exceptions/ResponseStatusMessage';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ClientService } from '../../../domain/services/Clients.service';
+import { CLIENT_HTTP_MESSAGE_STATUS } from '../../../domain/exceptions/ResponseStatusMessage';
+import { CreateClientDto } from '../../../domain/dtos/clients/CreateClient.dto';
+import { UpdateClientDto } from '../../../domain/dtos/clients/UpdateClientDto';
 import {
   Body,
   Controller,

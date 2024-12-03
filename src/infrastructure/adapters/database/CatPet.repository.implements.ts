@@ -1,8 +1,9 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { CatPetInterface } from 'src/app/ports/out/CatPet.repository';
-import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
-import { CatPet } from 'src/domain/models/pets/CatPet.model';
+
 import { Repository } from 'typeorm';
+import { CatPetInterface } from '../../../app/ports/out/CatPet.repository';
+import { CatPet } from '../../../domain/models/pets/CatPet.model';
+import { AnimalTypeEnum } from '../../../domain/models/enums/AnimalTypeEnum';
 
 export class CatPetRepositoryImpl implements CatPetInterface {
   constructor(
@@ -44,6 +45,11 @@ export class CatPetRepositoryImpl implements CatPetInterface {
 
   async delete(id: string): Promise<boolean> {
     const catPetData = await this.catPetRepository.delete(id);
-    return catPetData.affected > 0;
+    // Verifique se catPetData.affected é válido antes de compará-lo
+    return (
+      catPetData.affected !== null &&
+      catPetData.affected !== undefined &&
+      catPetData.affected > 0
+    );
   }
 }

@@ -27,7 +27,7 @@ export class CepService {
       return CepAdapter.convertCEPAddress(data);
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (error?.erro === true) {
+      if (error === true) {
         throw new Error(this.ERROR_CEP_NOT_FOUND);
       }
       throw new Error(this.ERROR_UNEXPECTED);

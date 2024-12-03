@@ -1,5 +1,4 @@
-import { ClientUser } from 'src/domain/models/users/Client.model';
-
+import { ClientUser } from '../../models/users/Client.model';
 export class UserValidator {
   public static ERROR_ID_INVALID = 'Id Inválido';
   public static ERROR_EMAIL_INVALID = 'E-mail inválido';

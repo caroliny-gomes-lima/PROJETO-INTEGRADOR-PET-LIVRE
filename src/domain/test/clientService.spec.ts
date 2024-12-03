@@ -1,4 +1,4 @@
-import { ClientInterface } from 'src/app/ports/out/Client.repository';
+import { ClientInterface } from '../../app/ports/out/Client.repository';
 import { ClientService } from '../services/Clients.service';
 
 describe('Serviço criar cliente', () => {

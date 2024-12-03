@@ -1,5 +1,5 @@
-import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
-import { CatPet } from 'src/domain/models/pets/CatPet.model';
+import { AnimalTypeEnum } from '../../../domain/models/enums/AnimalTypeEnum';
+import { CatPet } from '../../../domain/models/pets/CatPet.model';
 
 export interface CatPetInterface {
   findById(id: string): Promise<CatPet | null>;

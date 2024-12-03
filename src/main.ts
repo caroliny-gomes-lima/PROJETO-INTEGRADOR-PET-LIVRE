@@ -7,7 +7,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT;
+  //const port = process.development.env.PORT || 3000;
 
   const config = new DocumentBuilder()
     .setTitle('PetlIVRE API')
@@ -19,8 +19,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(port);
-  console.log(`Application is running on port ${port}`);
+  await app.listen(3000);
+  console.log(`Application is running on port ${3000}`);
   app.useGlobalFilters(new AllExceptionsFilter());
 }
 

@@ -1,17 +1,18 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { DogPetInterface } from 'src/app/ports/out/DogPet.repository';
-import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
-import { DogPet } from 'src/domain/models/pets/DogPet.model';
+
 import { Repository } from 'typeorm';
+import { DogPetInterface } from '../../../app/ports/out/DogPet.repository';
+import { DogPet } from '../../../domain/models/pets/DogPet.model';
+import { AnimalTypeEnum } from '../../../domain/models/enums/AnimalTypeEnum';
 
 export class DogPetRepositoryImpl implements DogPetInterface {
   constructor(
     @InjectRepository(DogPet)
-    private readonly catPetRepository: Repository<DogPet>,
+    private readonly dogPetRepository: Repository<DogPet>,
   ) {}
 
   findById(id: string): Promise<DogPet | null> {
-    const findCatPet = this.catPetRepository
+    const findCatPet = this.dogPetRepository
       .createQueryBuilder('DogPet')
       .where('DogPet.id = :id', { id })
       .getOne();
@@ -19,15 +20,15 @@ export class DogPetRepositoryImpl implements DogPetInterface {
   }
 
   async save(pet: DogPet): Promise<DogPet> {
-    return await this.catPetRepository.save(pet);
+    return await this.dogPetRepository.save(pet);
   }
 
   findAll(): Promise<DogPet[]> {
-    return this.catPetRepository.find();
+    return this.dogPetRepository.find();
   }
 
   findByName(name: string): Promise<DogPet | null> {
-    const findCatPet = this.catPetRepository
+    const findCatPet = this.dogPetRepository
       .createQueryBuilder('DogPet')
       .where('DogPet.name = :name', { name })
       .getOne();
@@ -35,7 +36,7 @@ export class DogPetRepositoryImpl implements DogPetInterface {
   }
 
   findByType(typePet: AnimalTypeEnum): Promise<DogPet | null> {
-    const findCatPet = this.catPetRepository
+    const findCatPet = this.dogPetRepository
       .createQueryBuilder('DogPet')
       .where('DogPet.typePet = :typePet', { typePet })
       .getOne();
@@ -43,8 +44,12 @@ export class DogPetRepositoryImpl implements DogPetInterface {
   }
 
   async delete(id: string): Promise<boolean> {
-    const catPetData = await this.catPetRepository.delete(id);
-    return catPetData.affected > 0;
+    const dogPetData = await this.dogPetRepository.delete(id);
+    return (
+      dogPetData.affected !== null &&
+      dogPetData.affected !== undefined &&
+      dogPetData.affected > 0
+    );
   }
 
   //   async save(user: ClientUser): Promise<ClientUser> {

@@ -1,15 +1,13 @@
-import { ClientUser } from 'src/domain/models/users/Client.model';
-import { CreateClientDto } from 'src/domain/dtos/clients/CreateClient.dto';
-
 import { Inject, Injectable } from '@nestjs/common';
-import { ClientInterface } from 'src/app/ports/out/Client.repository';
-import { ClientInterfaceUseCases } from 'src/app/ports/in/Client.usecase';
 import { UpdateClientDto } from '../dtos/clients/UpdateClientDto';
-
 import { Address } from '../models/users/Address.Model';
 import { ClientFactory } from '../factories/ClientFactory';
 import { UserValidator } from './validators/UserValidator';
 import { CepService } from './../../infrastructure/adapters/externalService/cepAddress/cep.service';
+import { ClientInterfaceUseCases } from '../../app/ports/in/Client.usecase';
+import { ClientUser } from '../models/users/Client.model';
+import { ClientInterface } from '../../app/ports/out/Client.repository';
+import { CreateClientDto } from '../dtos/clients/CreateClient.dto';
 import {
   ClientAlreadyExistsException,
   ClientNotFoundException,
@@ -51,7 +49,7 @@ export class ClientService implements ClientInterfaceUseCases {
   }
 
   async create(createClientDto: CreateClientDto): Promise<ClientUser> {
-    let address: Address = null;
+    let address: Address | undefined;
 
     UserValidator.verifyEmail(createClientDto.email);
     UserValidator.verifyPassword(createClientDto.password);
@@ -101,7 +99,7 @@ export class ClientService implements ClientInterfaceUseCases {
     UserValidator.verifyPassword(updateClientDto.password);
     UserValidator.isValidFullName(updateClientDto.fullName);
 
-    let address: Address = null;
+    let address: Address | undefined;
     if (updateClientDto.zipCode) {
       address = await CepService.getAddress(updateClientDto.zipCode);
     }
@@ -111,15 +109,15 @@ export class ClientService implements ClientInterfaceUseCases {
       throw new ClientNotFoundException();
     }
 
-    if (client) {
-      client.updateDetails(
-        updateClientDto.fullName,
-        updateClientDto.email,
-        updateClientDto.password,
-        address,
-      );
+    // Atualiza os detalhes do cliente
+    client.updateDetails(
+      updateClientDto.fullName,
+      updateClientDto.email,
+      updateClientDto.password,
+      address,
+    );
 
-      return await this.clientRepository.save(client);
-    }
+    // Salva e retorna o cliente atualizado
+    return await this.clientRepository.save(client);
   }
 }
