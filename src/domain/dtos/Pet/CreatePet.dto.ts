@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
-import { ClientUser } from 'src/domain/models/users/Client.model';
+import { ClientUser } from '../../models/users/Client.model';
+import { AnimalTypeEnum } from '../../models/enums/AnimalTypeEnum';
 
 export class CreatePetDto {
   @ApiProperty({
@@ -8,27 +8,33 @@ export class CreatePetDto {
     description: 'UUID do pet',
     format: 'uuid',
   })
-  id: string;
+  id!: string;
 
   @ApiProperty({
     example: 'Piquitito',
     description: 'Nome do gato ou cachorro',
   })
-  name: string;
+  name!: string;
 
-  @ApiProperty({ example: 'Bombay', description: 'raça do gato ou cachorro' })
-  race: string;
+  @ApiProperty({ example: 'Bombay', description: 'Raça do gato ou cachorro' })
+  race!: string;
 
-  @ApiProperty({ example: 'preto', description: 'cor do gato ou cachorro' })
-  color: string;
+  @ApiProperty({
+    description: 'Dono do pet',
+    type: () => ClientUser, // Aqui usamos o tipo diretamente
+  })
+  owner!: ClientUser;
 
-  @ApiProperty({ example: 6, description: 'idade do gato ou cachorro' })
-  age: number;
+  @ApiProperty({ example: 'preto', description: 'Cor do gato ou cachorro' })
+  color?: string;
+
+  @ApiProperty({ example: 6, description: 'Idade do gato ou cachorro' })
+  age?: number;
 
   @ApiProperty({
     example: 'gato',
-    description: 'tipo do animal gato ou cachorro',
+    description: 'Tipo do animal: gato ou cachorro',
+    enum: AnimalTypeEnum,
   })
-  typePet: AnimalTypeEnum;
-  owner: ClientUser;
+  typePet?: AnimalTypeEnum;
 }

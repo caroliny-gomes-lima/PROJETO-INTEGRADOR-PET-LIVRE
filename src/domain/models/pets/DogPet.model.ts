@@ -6,15 +6,15 @@ import { ClientUser } from '../users/Client.model';
 @Entity('dogsPet')
 export class DogPet extends Animal {
   @ManyToOne(() => ClientUser, (clientUser) => clientUser.dogPet)
-  owner: ClientUser;
+  owner!: ClientUser;
 
   constructor(
     id: string,
     name: string,
     race: string,
-    color: string,
-    age: number,
+    color?: string,
+    age?: number,
   ) {
-    super(id, name, race, color, age, AnimalTypeEnum.PET_DOG);
+    super(id, name, race, AnimalTypeEnum.PET_DOG, color, age);
   }
 }

@@ -14,7 +14,14 @@ describe('Serviço dev cadastrar o pet', () => {
       '123.456.789-00',
     );
     // Mock completo do cliente
-    const catPetMock = new CatPet('1', 'Gato Teste', 'Siamês', 'Branco', 2);
+    const catPetMock = new CatPet(
+      '1',
+      'Gato Teste',
+      'Siamês',
+      'Branco',
+      2,
+      clientMock,
+    );
     catPetMock.owner = clientMock;
 
     const clientServiceMock = {
@@ -45,6 +52,7 @@ describe('Serviço dev cadastrar o pet', () => {
       color: 'Branco',
       age: 2,
       typePet: AnimalTypeEnum.PET_CAT,
+      owner: clientMock,
     };
     const createdPet = await petService.create(
       createPetDto,

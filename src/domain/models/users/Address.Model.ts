@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('addresses')
 export class Address {
   @PrimaryGeneratedColumn('uuid')
-  private id: string;
+  private id!: string;
 
   @Column()
   private street: string;

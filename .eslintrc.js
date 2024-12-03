@@ -23,6 +23,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unsafe-call': 'error', // Adicionado
+    '@typescript-eslint/no-unsafe-member-access': 'error', // Adicionado
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };

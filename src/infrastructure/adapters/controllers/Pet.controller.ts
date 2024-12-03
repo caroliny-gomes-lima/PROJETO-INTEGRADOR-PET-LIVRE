@@ -1,9 +1,9 @@
-import { CreatePetDto } from 'src/domain/dtos/Pet/CreatePet.dto';
-import { PetService } from 'src/domain/services/Pet.service';
-import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
-import { UpdatePetDto } from 'src/domain/dtos/Pet/UpdatePet.dto';
-import { PET_HTTP_MESSAGE_STATUS } from 'src/domain/exceptions/ResponseStatusMessage';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { PetService } from '../../../domain/services/Pet.service';
+import { PET_HTTP_MESSAGE_STATUS } from '../../../domain/exceptions/ResponseStatusMessage';
+import { CreatePetDto } from '../../../domain/dtos/Pet/CreatePet.dto';
+import { AnimalTypeEnum } from '../../../domain/models/enums/AnimalTypeEnum';
+import { UpdatePetDto } from '../../../domain/dtos/Pet/UpdatePet.dto';
 import {
   Body,
   Controller,

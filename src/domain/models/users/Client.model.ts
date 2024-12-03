@@ -13,17 +13,17 @@ export class ClientUser extends User {
   private cpf: string;
 
   @OneToMany(() => CatPet, (catPet) => catPet.owner)
-  catsPet: CatPet[];
+  catsPet?: CatPet[];
 
   @OneToMany(() => DogPet, (dogPet) => dogPet.owner)
-  dogPet: DogPet[];
+  dogPet?: DogPet[];
 
   @OneToOne(() => Address, {
     nullable: true,
     cascade: true,
   })
   @JoinColumn({ name: 'address_id' })
-  address: Address;
+  address?: Address;
 
   constructor(
     id: string,
@@ -51,7 +51,7 @@ export class ClientUser extends User {
     fullName: string,
     email: string,
     password: string,
-    address: Address,
+    address: Address | undefined,
   ): void {
     super.updateUserDetails(fullName, email); // Chama o método da classe mãe
     this.password = password;

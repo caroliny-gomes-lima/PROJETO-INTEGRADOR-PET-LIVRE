@@ -1,14 +1,15 @@
 import { CatPet } from '../models/pets/CatPet.model';
 import { DogPet } from '../models/pets/DogPet.model';
-import { PetInterfaceUseCases } from 'src/app/ports/in/Pet.usecase';
-import { CatPetInterface } from 'src/app/ports/out/CatPet.repository';
-import { DogPetInterface } from 'src/app/ports/out/DogPet.repository';
+
 import { CreatePetDto } from '../dtos/Pet/CreatePet.dto';
 import { AnimalTypeEnum } from '../models/enums/AnimalTypeEnum';
 import { Inject, Injectable } from '@nestjs/common';
 import { PetFactory } from '../factories/PetFactory';
 import { ClientService } from './Clients.service';
 import { UpdatePetDto } from '../dtos/Pet/UpdatePet.dto';
+import { PetInterfaceUseCases } from '../../app/ports/in/Pet.usecase';
+import { CatPetInterface } from '../../app/ports/out/CatPet.repository';
+import { DogPetInterface } from '../../app/ports/out/DogPet.repository';
 import {
   ClientNotFoundException,
   PetNotFoundException,

@@ -1,8 +1,8 @@
-import { CreatePetDto } from 'src/domain/dtos/Pet/CreatePet.dto';
-import { UpdatePetDto } from 'src/domain/dtos/Pet/UpdatePet.dto';
-import { AnimalTypeEnum } from 'src/domain/models/enums/AnimalTypeEnum';
-import { CatPet } from 'src/domain/models/pets/CatPet.model';
-import { DogPet } from 'src/domain/models/pets/DogPet.model';
+import { CreatePetDto } from '../../../domain/dtos/Pet/CreatePet.dto';
+import { UpdatePetDto } from '../../../domain/dtos/Pet/UpdatePet.dto';
+import { AnimalTypeEnum } from '../../../domain/models/enums/AnimalTypeEnum';
+import { CatPet } from '../../../domain/models/pets/CatPet.model';
+import { DogPet } from '../../../domain/models/pets/DogPet.model';
 
 export interface PetInterfaceUseCases {
   create(
